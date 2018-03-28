@@ -1,6 +1,6 @@
 #!/bin/bash
 ### Set Language
-TEXTDOMAIN=virtualhost
+TEXTDOMAIN=vagrant
 
 ### Set default parameters
 action=$1
@@ -8,7 +8,7 @@ domain=$2
 rootDir=$3
 owner=$(who am i | awk '{print $1}')
 apacheUser=$(ps -ef | egrep '(httpd|apache2|apache)' | grep -v root | head -n1 | awk '{print $1}')
-email='webmaster@localhost'
+email='webmaster@vagrant'
 sitesEnabled='/etc/apache2/sites-enabled/'
 sitesAvailable='/etc/apache2/sites-available/'
 userDir='/var/www/'
@@ -16,8 +16,7 @@ sitesAvailabledomain=$sitesAvailable$domain.conf
 
 ### don't modify from here unless you know what you are doing ####
 
-if [ "$(whoami)" != 'root' ]; then
-	echo $"You have no permission to run $0 as non-root user. Use sudo"
+if [ "$(whoami)" != 'vagrant' ]; then
 		exit 1;
 fi
 
